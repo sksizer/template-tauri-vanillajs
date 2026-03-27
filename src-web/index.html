@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>tauri_vanillajs</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="app-container">
+      <div class="content">
+        <header class="header">
+          <h1 class="title">Tauri + Vanilla JS</h1>
+          <p class="subtitle">Desktop apps with web technologies</p>
+        </header>
+
+        <main class="main">
+          <div class="demo-card">
+            <h2 class="demo-title">Echo Command</h2>
+            <form id="echo-form" class="input-form">
+              <input
+                id="echo-input"
+                type="text"
+                placeholder="Enter a message to echo"
+                class="input-field"
+              />
+              <button type="submit" class="gradient-button">Echo</button>
+            </form>
+            <div id="echo-result" class="result hidden"></div>
+          </div>
+        </main>
+
+        <footer class="footer">
+          <p>Built with Tauri 2 and Vanilla JavaScript</p>
+        </footer>
+      </div>
+    </div>
+
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>

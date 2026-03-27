@@ -1,0 +1,17 @@
+# Dev Patterns
+.worktrees
+
+# MacOS Misc
+.DS_Store
+
+# IDE Cruft
+.vscode/
+
+# Node Environment
+node_modules
+
+# Vite Build Output
+dist
+
+# Rust Cargo Env
+target
