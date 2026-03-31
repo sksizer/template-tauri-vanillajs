@@ -3,6 +3,12 @@ node = { version = "lts", postinstall = "npm install"}
 pnpm = "latest"
 rust = { version = "1.93.0", postinstall = "cargo install tauri-cli --version '^2.10.0' --locked" }
 
+[env]
+TAURI_DEV_PORT = "{{exec(command='scripts/dev-port.sh --service vite')}}"
+STORYBOOK_PORT = "{{exec(command='scripts/dev-port.sh --service storybook')}}"
+MCP_PORT = "{{exec(command='scripts/dev-port.sh --service mcp')}}"
+HTTP_PORT = "{{exec(command='scripts/dev-port.sh --service http')}}"
+
 [tasks.setup]
 description = "Setup the development environment"
 run = [
@@ -34,4 +40,5 @@ run = [
 [hooks]
 enter = [
     "echo 'Entering Tauri/Vanilla JS development environment'",
+    "echo \"  Ports: Vite=$TAURI_DEV_PORT  Storybook=$STORYBOOK_PORT  MCP=$MCP_PORT  HTTP=$HTTP_PORT\"",
 ]
