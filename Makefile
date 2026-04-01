@@ -1,7 +1,7 @@
 .DEFAULT_GOAL := help
 
 .PHONY: help dev build build-debug lint lint-fix format format-check \
-        test rust-lint rust-format rust-test ci setup clean
+        test rust-lint rust-format rust-test ci setup clean ports
 
 ## Development ---------------------------------------------------------------
 
@@ -13,6 +13,7 @@ help: ## Show this help message
 	@echo "  dev            Run tauri dev server"
 	@echo "  build          Build for production"
 	@echo "  build-debug    Build with debug symbols"
+	@echo "  ports          Show auto-assigned port allocations"
 	@echo ""
 	@echo "Linting & Formatting:"
 	@echo "  lint           Run all linters (frontend + Rust)"
@@ -36,6 +37,9 @@ help: ## Show this help message
 
 dev: ## Run tauri dev server
 	pnpm tauri dev
+
+ports: ## Show auto-assigned port allocations
+	@scripts/dev-port.sh --all
 
 build: ## Build for production
 	pnpm tauri build

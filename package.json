@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "tauri": "tauri",
+    "tauri": "node scripts/tauri-wrapper.mjs",
     "clean:frontend": "cd src-web && rm -Rf node_modules dist",
     "clean:backend": "rm -Rf src-tauri/target && rm -f src-tauri/Cargo.lock",
     "clean:root": "rm -Rf node_modules",
