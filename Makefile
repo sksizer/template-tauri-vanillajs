@@ -1,7 +1,9 @@
 .DEFAULT_GOAL := help
 
 .PHONY: help dev build build-debug lint lint-fix format format-check \
-        test rust-lint rust-format rust-test ci setup clean ports
+        test rust-lint rust-format rust-test ci setup clean ports \
+        full-check full-write changelog \
+        template-check bring-up-to-date bring-up-to-date-all sync-cousins
 
 ## Development ---------------------------------------------------------------
 
@@ -20,6 +22,8 @@ help: ## Show this help message
 	@echo "  lint-fix       Auto-fix lint issues"
 	@echo "  format         Format all code"
 	@echo "  format-check   Check formatting without changes"
+	@echo "  full-check     Run all code checks (lint + format-check)"
+	@echo "  full-write     Auto-fix all formatting (frontend + Rust)"
 	@echo ""
 	@echo "Testing:"
 	@echo "  test           Run all tests (frontend + Rust)"
@@ -33,6 +37,13 @@ help: ## Show this help message
 	@echo "  ci             Run full CI pipeline (lint, format-check, test, build)"
 	@echo "  setup          Install dependencies and git hooks"
 	@echo "  clean          Remove build artifacts"
+	@echo "  changelog      Generate changelog from conventional commits"
+	@echo ""
+	@echo "Template:"
+	@echo "  template-check       Check template drift against upstream"
+	@echo "  bring-up-to-date     Sync with upstream template (dry-run default)"
+	@echo "  bring-up-to-date-all Sync all downstream projects (dry-run default)"
+	@echo "  sync-cousins         Sync shared layer to cousin templates (dry-run default)"
 	@echo ""
 
 dev: ## Run tauri dev server
@@ -64,6 +75,12 @@ format-check: ## Check formatting without changes
 	pnpm run format:check
 	cd src-tauri && cargo fmt -- --check
 
+full-check: lint format-check ## Run all code checks
+
+full-write: ## Auto-fix all formatting (frontend + Rust)
+	pnpm run format
+	cd src-tauri && cargo fmt --all
+
 ## Testing -------------------------------------------------------------------
 
 test: ## Run all tests (frontend + Rust)
@@ -88,6 +105,21 @@ ci: lint format-check test build ## Run full CI pipeline
 setup: ## Install dependencies and git hooks
 	pnpm run project:init
 	pnpm lefthook install
+
+changelog: ## Generate changelog from conventional commits
+	git-cliff --output CHANGELOG.md
+
+template-check: ## Check template drift against upstream
+	scripts/sync-template-check
+
+bring-up-to-date: ## Sync with upstream template (dry-run default; pass ARGS="--execute" to run)
+	bash scripts/bring_up_to_date.sh $(ARGS)
+
+bring-up-to-date-all: ## Sync all downstream projects (dry-run default; pass ARGS="--execute" to run)
+	bash scripts/bring_up_to_date_all.sh $(ARGS)
+
+sync-cousins: ## Sync shared layer to cousin templates (dry-run default; pass ARGS="--execute" to run)
+	bash scripts/sync_cousins.sh $(ARGS)
 
 clean: ## Remove build artifacts
 	pnpm run clean
