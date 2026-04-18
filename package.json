@@ -15,14 +15,15 @@
     "prepare": "lefthook install",
     "frontend:lint": "cd src-web && pnpm run lint",
     "frontend:test": "cd src-web && pnpm run test",
-    "backend:lint": ".scripts/backend-lint",
-    "backend:format:check": ".scripts/backend-format-check",
-    "backend:test": ".scripts/backend-test",
+    "backend:lint": "scripts/backend-lint",
+    "backend:format:check": "scripts/backend-format-check",
+    "backend:test": "scripts/backend-test",
+    "template:check": "scripts/sync-template-check",
     "format": "cd src-web && pnpm run format",
     "format:check": "cd src-web && pnpm run format:check"
   },
   "dependencies": {
-    "pnpm": "^10.30.3"
+    "pnpm": "^10.33.0"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
@@ -30,11 +31,11 @@
     ]
   },
   "devDependencies": {
-    "@commitlint/cli": "^20.4.2",
-    "@commitlint/config-conventional": "^20.4.2",
+    "@commitlint/cli": "^20.5.0",
+    "@commitlint/config-conventional": "^20.5.0",
     "@release-it/bumper": "^7.0.5",
-    "@tauri-apps/cli": "^2.10.0",
-    "lefthook": "^2.1.1",
+    "@tauri-apps/cli": "^2.10.1",
+    "lefthook": "^2.1.6",
     "release-it": "^19.2.4"
   }
 }

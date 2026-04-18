@@ -22,16 +22,16 @@ Do NOT overwrite:
 After making changes, run the quality gate:
 
 ```
-make full-check
+just full-check
 ```
 
 If there are formatting issues, fix them with:
 
 ```
-make full-write
+just full-write
 ```
 
-Then run `make full-check` again to confirm everything passes.
+Then run `just full-check` again to confirm everything passes.
 
 When finished, create a branch named `chore/update-from-template` and a single commit with the following format:
 

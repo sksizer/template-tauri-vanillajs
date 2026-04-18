@@ -1,16 +1,16 @@
 # Development Instructions
 
-When you generate new code or update existing code, run `just ci` or `make ci` to verify everything
-passes (lint, format, test, build). For a quick Rust-only check, use `rust-lint` and `rust-format`.
+When you generate new code or update existing code, run `just ci` to verify everything passes
+(lint, format, test, build). For a quick Rust-only check, use `just rust-lint` and
+`just rust-format`.
 
-If there are formatting issues, run `just full-write` or `make full-write` to auto-fix them,
-then re-run `just full-check` or `make full-check`.
+If there are formatting issues, run `just full-write` to auto-fix them, then re-run `just full-check`.
 
-To see all available commands, run `just --list` or `make help`.
+To see all available commands, run `just --list`.
 
 ## Quick Reference
 
-- `full-check` — Run all checks (lint + format-check)
-- `full-write` — Auto-fix all formatting (frontend + Rust)
-- `ci` — Full CI pipeline (lint, format, test, build)
-- `test` — Run all tests (frontend + Rust)
+- `just full-check` — Run all checks (lint + format-check)
+- `just full-write` — Auto-fix all formatting (frontend + Rust)
+- `just ci` — Full CI pipeline (lint, format, test, build)
+- `just test` — Run all tests (frontend + Rust)
