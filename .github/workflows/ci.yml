@@ -29,7 +29,7 @@ jobs:
         run: pnpm frontend:test
 
   rust:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-22.04 # Use this bc of tauri project recommendations wrt to dependencies
     steps:
       - uses: actions/checkout@v4
 
@@ -47,10 +47,10 @@ jobs:
           workspaces: './src-tauri -> target'
 
       - name: Check formatting
-        run: .scripts/backend-format-check
+        run: scripts/backend-format-check
 
       - name: Clippy lints
-        run: .scripts/backend-lint
+        run: scripts/backend-lint
 
       - name: Test
-        run: .scripts/backend-test
+        run: scripts/backend-test

@@ -17,7 +17,6 @@ import { fileURLToPath } from 'node:url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PROJECT_ROOT = resolve(__dirname, '..');
 const DEV_PORT_SCRIPT = resolve(__dirname, 'dev-port.sh');
-const TAURI_BIN = resolve(PROJECT_ROOT, 'node_modules', '.bin', 'tauri');
 
 // Parse args: node scripts/tauri-wrapper.mjs <subcommand> [args...]
 const [subcommand, ...rest] = process.argv.slice(2);
@@ -80,7 +79,7 @@ function run() {
     );
   }
 
-  const child = spawn(TAURI_BIN, args, {
+  const child = spawn('npx', ['tauri', ...args], {
     cwd: PROJECT_ROOT,
     env,
     stdio: 'inherit',
